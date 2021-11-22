@@ -1,0 +1,64 @@
+@layout('layouts.app')
+
+@section('content')
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('img/background/creek.jpg');">
+    <div class="overlay"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Project Blog</h1>
+                    <span class="subheading">Updates on Current Projects and Continuing Education</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            @set(posts, posts.reverse())
+            <div id="firstThreePosts">
+                @each(post in posts)
+                @if(posts.indexOf(post) < 3)
+                <div class="post-preview">
+                    <a href="/post/{{ post._id }}">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                    </a>
+                    <p class="post-meta">Posted by
+                        <a href="#">{{ post.username }}</a>
+                        on {{ post.createdAt.toDateString() }}
+                    </p>
+                </div>
+                @endif
+                @endeach
+            </div>
+            <div id="remainingPosts" style="display: none">
+                @each(post in posts)
+                @if(posts.indexOf(post) > 2)
+                <div class="post-preview">
+                    <a href="/post/{{ post._id }}">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                    </a>
+                    <p class="post-meta">Posted by
+                        <a href="#">{{ post.username }}</a>
+                        on {{ post.createdAt.toDateString() }}
+                    </p>
+                </div>
+                @endif
+                @endeach
+            </div>
+            @if(posts.length > 0)
+            <p style="text-align: center; cursor:pointer"
+               onClick="window.document.getElementById('remainingPosts').style.display = ''; this.style.display = 'none' ">Load more
+                posts...</p>
+            @endif
+        </div>
+
+    </div>
+</div>
+<hr>
+@endsection

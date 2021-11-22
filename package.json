@@ -1,0 +1,28 @@
+{
+  "name": "portfolio-blog",
+  "version": "1.0.0",
+  "description": "My programming blog in Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "nodemon --inspect index.js"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Zachary Perales",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "express": "^4.17.1",
+    "express-edge": "^2.0.2",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.14",
+    "startbootstrap-clean-blog": "^4.1.1"
+  }
+}
