@@ -7,6 +7,7 @@ const fileUpload = require("express-fileupload");
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
 const connectFlash = require('connect-flash');
+const fs = require('fs');
 const createPostController = require('./controllers/createPost');
 const homePageController = require('./controllers/homePage');
 const storePostController = require('./controllers/storePost');
@@ -33,6 +34,12 @@ app.use(expressSession({
         mongooseConnection: mongoose.connection
     })
 }));
+
+const postsDir = './public/posts';
+
+if (!fs.existsSync(postsDir)) {
+    fs.mkdirSync(postsDir);
+}
 
 app.use(fileUpload());
 app.use(express.static('public'));
