@@ -1,7 +1,8 @@
 const path = require('path');
 const Post = require('../database/models/Post');
+const uploadFile = require("../middleware/upload");
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     const backgroundImage = (req.files) ? req.files.backgroundImage : undefined;
     const postImages = (req.files && req.files.postImages) ? [] : undefined;
 
@@ -9,31 +10,27 @@ module.exports = (req, res) => {
         if (req.files.postImages.length > 1) {
             for (const postImage of req.files.postImages) {
                 postImages.push(postImage);
-                postImage.mv(path.resolve(__dirname, '..', 'public/posts', postImage.name), (error) => {
-                    (error) && console.log(error);
-                });
+                await uploadFile.streamFileUpload(postImage, "zachary-portfolio-blog-photos");
             }
         } else {
             postImages.push(req.files.postImages);
-            postImages[0].mv(path.resolve(__dirname, '..', 'public/posts', postImages[0].name), (error) => {
-                (error) && console.log(error);
-            });
+            await uploadFile.streamFileUpload(req.files.postImages, "zachary-portfolio-blog-photos");
         }
     }
+
     // Check if any images were uploaded to the backgroundImage input field in the create.edge file.
     if (backgroundImage) {
-        // Move the image in the backgroundImage field from the request to /public/posts/{backgroundImage.name}.
-        backgroundImage.mv(path.resolve(__dirname, '..', 'public/posts', backgroundImage.name), (error) => {
-            (error) && console.log(error);
-        });
+        await uploadFile.streamFileUpload(backgroundImage, "zachary-portfolio-blog-photos");
     }
 
-    Post.create({...req.body, image : (backgroundImage) ? `/posts/${backgroundImage.name}` : this.image,
-        postImages: (postImages) ? postImages.map(a => `/posts/${a.name}`) : this.postImages}, (error, post) => {
-            (error) && console.log(error);
-            res.redirect("/");
+    Post.create({
+        ...req.body,
+        image: (backgroundImage) ? `https://storage.googleapis.com/zachary-portfolio-blog-photos/${backgroundImage.name}` : this.image,
+        postImages: (postImages) ? postImages.map(a => `https://storage.googleapis.com/zachary-portfolio-blog-photos/${a.name}`) : this.postImages
+    }, (error, post) => {
+        (error) && console.log(error);
+        res.redirect("/");
     });
-
 
 
     /*
