@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
     username: String,
     image: {
         type: String,
-        default: '/img/background/default_post_background.jpg'
+        default: 'https://storage.googleapis.com/zachary-portfolio-blog-photos/default_post_background.jpg'
     },
     // Images that are uploaded to be included at the bottom of a blog post.
     postImages: [String],
