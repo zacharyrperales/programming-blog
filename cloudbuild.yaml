@@ -1,0 +1,8 @@
+steps:
+  - name: node
+    entrypoint: npm
+    args: ['install']
+  - name: node
+    args: ["run", "create-env"]
+    env:
+      - 'MONGO_DB_PASSWORD=$(_MONGO_DB_PASSWORD)'
