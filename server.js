@@ -17,7 +17,7 @@ const storeUserController = require('./controllers/storeUser');
 const loginController = require("./controllers/login");
 const loginUserController = require('./controllers/loginUser');
 const logoutController = require('./controllers/logout');
-const { MONGO_DB_PASSWORD } = require('./config/config.js');
+const { MONGO_DB_PASSWORD } = require('./config.js');
 
 const app = new express();
 
