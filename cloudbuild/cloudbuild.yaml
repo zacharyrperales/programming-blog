@@ -1,0 +1,11 @@
+steps:
+  - name: node:16
+    entrypoint: npm
+    args: ['install']
+  - name: node:16
+    entrypoint: npm
+    args: ["run", "create-env"]
+    env:
+      - 'MONGO_DB_PASSWORD=$(_MONGO_DB_PASSWORD)'
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
