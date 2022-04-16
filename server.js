@@ -17,7 +17,7 @@ const storeUserController = require('./controllers/storeUser');
 const loginController = require("./controllers/login");
 const loginUserController = require('./controllers/loginUser');
 const logoutController = require('./controllers/logout');
-const { MONGO_DB_PASSWORD } = require('./config.js');
+const { MONGO_DB_PASSWORD } = require('./config/config.js');
 
 const app = new express();
 
@@ -36,14 +36,12 @@ app.use(expressSession({
     })
 }));
 
-
-
 app.use(fileUpload());
-app.use(express.static('public'));
-app.use('/posts', express.static(__dirname + '/public'));
-app.use('/post', express.static(__dirname + '/public'));
-app.use('/auth', express.static(__dirname + '/public'));
-app.use('/', express.static(__dirname + '/public'));
+app.use(express.static('/views/resources'));
+app.use('/posts', express.static(__dirname + '/views/resources'));
+app.use('/post', express.static(__dirname + '/views/resources'));
+app.use('/auth', express.static(__dirname + '/views/resources'));
+app.use('/', express.static(__dirname + '/views/resources'));
 app.use(expressEdge.engine);
 app.set('views', __dirname + '/views');
 
