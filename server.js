@@ -7,7 +7,6 @@ const fileUpload = require("express-fileupload");
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
 const connectFlash = require('connect-flash');
-const fs = require('fs');
 const createPostController = require('./controllers/createPost');
 const homePageController = require('./controllers/homePage');
 const storePostController = require('./controllers/storePost');
