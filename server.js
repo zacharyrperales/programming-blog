@@ -22,6 +22,7 @@ const { MONGO_DB_PASSWORD } = require('./config.js');
 const app = new express();
 
 app.use(connectFlash());
+console.log(MONGO_DB_PASSWORD);
 mongoose.connect(`mongodb+srv://${MONGO_DB_PASSWORD}:portfolio-blog@cluster0.u8yqr.mongodb.net/posts?retryWrites=true&w=majority`, {
     useNewUrlParser: true })
     .then(() => 'You are now connected to Mongo!')
