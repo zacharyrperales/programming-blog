@@ -17,7 +17,7 @@ const storeUserController = require('./controllers/storeUser');
 const loginController = require("./controllers/login");
 const loginUserController = require('./controllers/loginUser');
 const logoutController = require('./controllers/logout');
-const { MONGO_DB_PASSWORD } = require('./config/build/config.js');
+const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
 
 const app = new express();
 
@@ -74,7 +74,7 @@ app.post('/users/register', redirectIfAuthenticated, storeUserController);
 app.get('/auth/logout', logoutController);
 
 
-
-app.listen(8080, () => {
-    console.log('App listening on port 8080');
+// Start the server.
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
 });
