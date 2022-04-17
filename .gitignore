@@ -3,4 +3,4 @@
 /.idea/
 # Project exclude files
 package-lock.json
-.env
+/.env
