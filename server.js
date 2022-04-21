@@ -7,7 +7,7 @@ const fileUpload = require("express-fileupload");
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
 const connectFlash = require('connect-flash');
-const getHomePage = require('./controllers/homePage').getHomePage;
+const indexController = require('./controllers/indexController');
 const authenticationController = require('./controllers/authenticationController');
 const postController = require('./controllers/postController');
 const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
@@ -49,7 +49,7 @@ app.use('/posts', express.static(__dirname + '/views/resources'));
 app.use('/post', express.static(__dirname + '/views/resources'));
 app.use('/auth', express.static(__dirname + '/views/resources'));
 
-app.get('/', getHomePage);
+app.get('/', indexController.getHomePage);
 app.get('/post/:id', postController.getPost);
 app.get('/posts/new', auth, postController.getNewPost);
 app.post('/posts/store', auth, storePost, postController.postStoredPost);
