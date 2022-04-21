@@ -11,11 +11,7 @@ const getNewPost = require('./controllers/createPost').getNewPost;
 const getHomePage = require('./controllers/homePage').getHomePage;
 const postStoredPost = require('./controllers/storePost').postStoredPost;
 const getPost = require('./controllers/getPost').getPost;
-const getRegistration = require('./controllers/getRegistration').getRegistration;
-const postRegistration = require('./controllers/postRegistration').postRegistration;
-const getLogin = require("./controllers/login").getLogin;
-const postLogin = require('./controllers/loginUser').postLogin;
-const logout = require('./controllers/logout').logout;
+const authenticationController = require('./controllers/authenticationController');
 const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
 const app = express();
 
@@ -59,11 +55,11 @@ app.get('/', getHomePage);
 app.get('/post/:id', getPost);
 app.get('/posts/new', auth, getNewPost);
 app.post('/posts/store', auth, storePost, postStoredPost);
-app.get('/auth/login', redirectIfAuthenticated, getLogin);
-app.post('/users/login', redirectIfAuthenticated, postLogin);
-app.get('/auth/register', redirectIfAuthenticated, getRegistration);
-app.post('/users/register', redirectIfAuthenticated, postRegistration);
-app.get('/auth/logout', logout);
+app.get('/auth/login', redirectIfAuthenticated, authenticationController.getLoginPage);
+app.post('/users/login', redirectIfAuthenticated, authenticationController.postLogin);
+app.get('/auth/register', redirectIfAuthenticated, authenticationController.getRegistrationPage);
+app.post('/users/register', redirectIfAuthenticated, authenticationController.postRegistration);
+app.get('/auth/logout', authenticationController.logout);
 
 
 // Start the server.
