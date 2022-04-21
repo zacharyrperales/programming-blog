@@ -1,5 +1,4 @@
-module.exports = (req, res) => {
-
+const getNewPost = (req, res) => {
     const username = req.session.username;
     console.log(username);
 
@@ -8,4 +7,8 @@ module.exports = (req, res) => {
     }
 
     res.redirect('/auth/login');
-};
+}
+
+module.exports = {
+    getNewPost
+}

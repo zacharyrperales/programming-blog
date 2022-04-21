@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require('../database/models/User');
 
-module.exports = (req, res) => {
+const postLogin = (req, res) => {
     const {
         email,
         password
@@ -26,4 +26,8 @@ module.exports = (req, res) => {
             return res.redirect('/auth/login');
         }
     });
+};
+
+module.exports = {
+    postLogin
 }

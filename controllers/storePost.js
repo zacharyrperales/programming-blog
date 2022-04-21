@@ -1,8 +1,7 @@
-const path = require('path');
 const Post = require('../database/models/Post');
 const uploadFile = require("../middleware/upload");
 
-module.exports = async (req, res) => {
+const postStoredPost = async (req, res) => {
     const backgroundImage = (req.files) ? req.files.backgroundImage : undefined;
     const postImages = (req.files && req.files.postImages) ? [] : undefined;
 
@@ -49,3 +48,7 @@ module.exports = async (req, res) => {
     };
      */
 };
+
+module.exports = {
+    postStoredPost
+}
