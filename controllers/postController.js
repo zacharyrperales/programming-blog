@@ -1,6 +1,24 @@
 const Post = require('../database/models/Post');
 const uploadFile = require("../middleware/upload");
 
+const getNewPost = (req, res) => {
+    const username = req.session.username;
+    console.log(username);
+
+    if (req.session.userId) {
+        return res.render('create', {username});
+    }
+
+    res.redirect('/auth/login');
+}
+
+const getPost = async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    res.render("post", {
+        post
+    });
+}
+
 const postStoredPost = async (req, res) => {
     const backgroundImage = (req.files) ? req.files.backgroundImage : undefined;
     const postImages = (req.files && req.files.postImages) ? [] : undefined;
@@ -30,25 +48,10 @@ const postStoredPost = async (req, res) => {
         (error) && console.log(error);
         res.redirect("/");
     });
-
-
-    /*
-    const lastPostID = Post.find().sort({"_id" : -1 }).limit(1);
-
-    Post.updateOne({_id: lastPostID}, {$set:{postImages: postImages}}, (error, post) => {
-        (error) && console.log(error);
-    });
-     */
-
-
-    /*
-    Post.insertMany({postImages}), (error, post) => {
-        (error) && console.log(error);
-        res.redirect("/");
-    };
-     */
 };
 
 module.exports = {
+    getNewPost,
+    getPost,
     postStoredPost
 }

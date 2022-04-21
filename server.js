@@ -7,11 +7,9 @@ const fileUpload = require("express-fileupload");
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
 const connectFlash = require('connect-flash');
-const getNewPost = require('./controllers/createPost').getNewPost;
 const getHomePage = require('./controllers/homePage').getHomePage;
-const postStoredPost = require('./controllers/storePost').postStoredPost;
-const getPost = require('./controllers/getPost').getPost;
 const authenticationController = require('./controllers/authenticationController');
+const postController = require('./controllers/postController');
 const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
 const app = express();
 
@@ -52,9 +50,9 @@ app.use('/post', express.static(__dirname + '/views/resources'));
 app.use('/auth', express.static(__dirname + '/views/resources'));
 
 app.get('/', getHomePage);
-app.get('/post/:id', getPost);
-app.get('/posts/new', auth, getNewPost);
-app.post('/posts/store', auth, storePost, postStoredPost);
+app.get('/post/:id', postController.getPost);
+app.get('/posts/new', auth, postController.getNewPost);
+app.post('/posts/store', auth, storePost, postController.postStoredPost);
 app.get('/auth/login', redirectIfAuthenticated, authenticationController.getLoginPage);
 app.post('/users/login', redirectIfAuthenticated, authenticationController.postLogin);
 app.get('/auth/register', redirectIfAuthenticated, authenticationController.getRegistrationPage);
