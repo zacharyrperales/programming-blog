@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, "Username is required."],
         unique: true
-
     },
     email: {
         type: String,
@@ -19,8 +19,10 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
+// This plugin saves unique index errors in MongoDB schemas in error.errors as a ValidatorError type, making error handling more elegant.
+userSchema.plugin(uniqueValidator, { message: 'The {PATH} {VALUE} is already registered.'});
 
-UserSchema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
    const user = this;
 
    bcrypt.hash(user.password, 10, function (error, encrypted) {
@@ -29,4 +31,5 @@ UserSchema.pre('save', function(next) {
    })
 });
 
-module.exports = mongoose.model('User', UserSchema);
+
+module.exports = mongoose.model('User', userSchema);
