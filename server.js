@@ -12,7 +12,6 @@ const authenticationController = require('./controllers/authenticationController
 const postController = require('./controllers/postController');
 const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
 const app = express();
-
 app.use(fileUpload());
 app.use(expressEdge.engine);
 app.use(connectFlash());
@@ -21,10 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('views', __dirname + '/views');
 
-mongoose.connect(`mongodb+srv://${MONGO_DB_PASSWORD}:portfolio-blog@cluster0.u8yqr.mongodb.net/posts?retryWrites=true&w=majority`, {
-    useNewUrlParser: true })
-    .then(() => 'You are now connected to Mongo!')
-    .catch(err => console.error('Something went wrong', err));
+mongoose.connect(`mongodb+srv://zack:${MONGO_DB_PASSWORD}@cluster0.u8yqr.mongodb.net/posts?retryWrites=true&w=majority`).catch((error) => {
+    console.log(error);
+})
 
 const mongoStore = connectMongo(expressSession);
 

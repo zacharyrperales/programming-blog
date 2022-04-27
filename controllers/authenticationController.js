@@ -10,10 +10,14 @@ const login = (req, res) => {
     const password = req.body.password;
 
     User.findOne({"email" : email }).then((user) => {
-        bcrypt.compare(password, user.password).then(() => {
-            req.session.userId = user._id;
-            req.session.username = user.username;
-            return res.redirect("/");
+        bcrypt.compare(password, user.password).then(( matched) => {
+            if (matched) {
+                req.session.userId = user._id;
+                req.session.username = user.username;
+                return res.redirect("/");
+            } else {
+                return res.redirect("/auth/login");
+            }
         });
     }).catch((error) => {
         console.log(error);
