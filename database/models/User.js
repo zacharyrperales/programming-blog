@@ -22,12 +22,11 @@ const userSchema = new mongoose.Schema({
 // This plugin saves unique index errors in MongoDB schemas in error.errors as a ValidatorError type, making error handling more elegant.
 userSchema.plugin(uniqueValidator, { message: 'The {PATH} {VALUE} is already registered.'});
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function() {
    const user = this;
 
    bcrypt.hash(user.password, 10, function (error, encrypted) {
        user.password = encrypted;
-       next();
    })
 });
 
