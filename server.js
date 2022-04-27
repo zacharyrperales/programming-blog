@@ -53,10 +53,10 @@ app.get('/', indexController.getHomePage);
 app.get('/post/:id', postController.getPost);
 app.get('/posts/new', auth, postController.getNewPost);
 app.post('/posts/store', auth, storePost, postController.postStoredPost);
-app.get('/auth/login', redirectIfAuthenticated, authenticationController.getLoginPage);
-app.post('/users/login', redirectIfAuthenticated, authenticationController.postLogin);
-app.get('/auth/register', redirectIfAuthenticated, authenticationController.getRegistrationPage);
-app.post('/users/register', redirectIfAuthenticated, authenticationController.postRegistration);
+app.get('/auth/login', redirectIfAuthenticated, authenticationController.loginPage);
+app.post('/users/login', redirectIfAuthenticated, authenticationController.login);
+app.get('/auth/register', redirectIfAuthenticated, authenticationController.registrationPage());
+app.post('/users/register', redirectIfAuthenticated, authenticationController.register);
 app.get('/auth/logout', authenticationController.logout);
 
 

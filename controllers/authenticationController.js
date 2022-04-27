@@ -1,50 +1,39 @@
-const bcrypt = require('bcrypt');
-const User = require('../database/models/User');
+const bcrypt = require("bcrypt");
+const User = require("../database/models/User");
 
-const getLoginPage = (req, res) => {
-    res.render('login');
+const loginPage = (req, res) => {
+    return res.render("login");
 }
 
-const postLogin = (req, res) => {
-    const {
-        email,
-        password
-    } = req.body;
-    // try to find the user
-    User.findOne({
-        email
-    }, (error, user) => {
-        if (user) {
-            // compare passwords
-            bcrypt.compare(password, user.password, (error, same) => {
-                if (same) {
-                    // store user session
-                    req.session.userId = user._id;
-                    req.session.username = user.username;
-                    res.redirect('/');
-                } else {
-                    res.redirect('auth/login');
-                }
-            });
-        } else {
-            return res.redirect('/auth/login');
-        }
+const login = (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    User.findOne({"email" : email }).then((user) => {
+        bcrypt.compare(password, user.password).then(() => {
+            req.session.userId = user._id;
+            req.session.username = user.username;
+            return res.redirect("/");
+        });
+    }).catch((error) => {
+        console.log(error);
+        return res.redirect("/auth/login");
     });
-};
+}
 
 const logout = (req, res) => {
     req.session.destroy(() => {
-        res.redirect('/');
-    });
-};
-
-const getRegistrationPage = (req, res) => {
-    res.render('register', {
-        errors: req.flash('registrationErrors')
+        return res.redirect("/");
     });
 }
 
-const postRegistration = (req, res) => {
+const registrationPage = (req, res) => {
+    return res.render("register", {
+        errors: req.flash("registrationErrors")
+    });
+}
+
+const register = (req, res) => {
     User.create(req.body).then(() => {
         return res.redirect("/");
     }).catch((error) => {
@@ -56,10 +45,10 @@ const postRegistration = (req, res) => {
 
 
 module.exports = {
-    getLoginPage,
-    postLogin,
+    loginPage,
+    login,
     logout,
-    getRegistrationPage,
-    postRegistration
+    registrationPage,
+    register
 }
 
