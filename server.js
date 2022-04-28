@@ -20,12 +20,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('views', __dirname + '/views');
 
+// @todo Use environment variable NODE_ENV and dotenv to change the 'development' environment server to local and the 'production' environment server to Google Cloud Atlassian MongoDB.
+// @todo Learn how to backup, drop, and then restore the MongoDB database and its contents to Google Cloud Atlassian MongoDB and/or platform and implement this with proper naming conventions and syntax.
 mongoose.connect(`mongodb+srv://zack:${MONGO_DB_PASSWORD}@cluster0.u8yqr.mongodb.net/posts?retryWrites=true&w=majority`).catch((error) => {
     console.log(error);
 })
 
 const mongoStore = connectMongo(expressSession);
 
+// @todo Use environment variable NODE_ENV and dotenv to create two separate session configurations for the 'development' and 'production' environments. E.g. no cookies and cookies respectively.
+// @todo Check for race condition with navbar links on the homepage with the default resave option set to true in express-session, when logging in and out too fast the home page may still think the user is authenticated after logging out.
 app.use(expressSession({
     secret: 'secret',
     store: new mongoStore({
@@ -57,7 +61,7 @@ app.get('/auth/register', redirectIfAuthenticated, authenticationController.regi
 app.post('/users/register', redirectIfAuthenticated, authenticationController.register);
 app.get('/auth/logout', authenticationController.logout);
 
-
+// @todo Require https always by modifying app.yaml or cloudbuild.yaml, then enforce secure cookies are always sent via https as well during sessions.
 // Start the server.
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
