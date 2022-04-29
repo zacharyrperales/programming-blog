@@ -1,6 +1,4 @@
-const expressEdge = require('express-edge');
 const express = require('express');
-const edge = require('edge.js');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require("express-fileupload");
@@ -12,8 +10,10 @@ const authenticationController = require('./controllers/authenticationController
 const postController = require('./controllers/postController');
 const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
 const app = express();
-app.use(fileUpload());
-app.use(expressEdge.engine);
+
+app.set('view engine', 'ejs');
+app.use(fileUpload);
+app.use();
 app.use(connectFlash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -35,7 +35,7 @@ const postStoredPost = async (req, res) => {
         }
     }
 
-    // Check if any images were uploaded to the backgroundImage input field in the create.edge file.
+    // Check if any images were uploaded to the backgroundImage input field in the create.ejs file.
     if (backgroundImage) {
         await uploadFile.streamFileUpload(backgroundImage, "zachary-portfolio-blog-photos");
     }
