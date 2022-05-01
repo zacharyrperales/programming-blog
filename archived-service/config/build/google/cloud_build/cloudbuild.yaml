@@ -10,5 +10,4 @@ steps:
     env:
       - 'MONGO_DB_PASSWORD=${_MONGO_DB_PASSWORD}'
   - name: "gcr.io/cloud-builders/gcloud"
-    args: ["app", "deploy", "--appyaml=./archived-service/config/build/google/app_engine/archived-service.yaml"]
-    dir: 'archived-service'
+    args: ["app", "deploy", "--appyaml=./config/build/google/app_engine/archived-service.yaml"]
