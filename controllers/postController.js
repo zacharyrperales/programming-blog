@@ -3,7 +3,6 @@ const uploadFile = require("../middleware/upload");
 
 const getNewPost = (req, res) => {
     const username = req.session.username;
-    console.log(username);
 
     if (req.session.userId) {
         return res.render('create', {username});
