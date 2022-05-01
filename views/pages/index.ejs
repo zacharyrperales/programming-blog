@@ -1,49 +1,32 @@
-<head>
-    <%- include('../partials/head'); %>
-</head>
-<header>
-    <%- include('../partials/header'); %>
-</header>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <% const posts = posts.reverse %>
-            <div id="firstThreePosts">
-                <% for (var post in posts) { %>
-                    <% if (posts.indexOf(post) < 3) { %>
-                <div class="post-preview">
-                    <a href="<%= `/post/${post._id}` %>">
-                        <h2 class="post-title"><%= post.title %></h2>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#"> <%= post.username %></a> on <%= post.createdAt.toDateString() %></p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div id="firstThreePosts">
+                        <% for (var post in posts) { %>
+                        <div class="post-preview">
+                            <a href="<% `/post/${post._id}` %>">
+                                <h2 class="post-title"><%= posts[0].title %></h2>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#"> <% post.username %></a> on <% post.createdAt %></p>
+                        </div>
+                        <% } %>
+                    </div>
                 </div>
-                    <% } %>
-                <% } %>
             </div>
-            <div id="remainingPosts" style="display: none">
-                <% for (var post in posts) { %>
-                    <% if (posts.indexOf(post) > 2) { %>
-                <div class="post-preview">
-                    <a href="<%= `/post/${post._id}` %>">
-                        <h2 class="post-title"> <%= post.title %></h2>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#"> <%= post.username %></a> on <%= post.createdAt.toDateString() %> </p>
-                </div>
-                    <% } %>
-                <% } %>
-            </div>
-
-            <% if (posts.length > 0) { %>
-            <p style="text-align: center; cursor:pointer"
-               onClick="window.document.getElementById('remainingPosts').style.display = ''; this.style.display = 'none' ">Load more
-                posts...</p>
-            <% } %>
         </div>
-
-    </div>
-</div>
-<hr>
-
-<footer>
-    <%- include('../partials/footer'); %>
-</footer>
+        <%- include('../partials/body'); %>
+    </body>
+    <hr>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</html>

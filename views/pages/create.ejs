@@ -1,56 +1,53 @@
-@layout('layouts.app')
-
-@section('content')
-<!-- Page Header -->
-<header class="masthead">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="page-heading">
-                    <h1>Create New Post</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form action="/posts/store" method="POST" encType="multipart/form-data" >
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" value="{{username}}">
+                            </div>
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Title</label>
+                                <input type="text" name="title" placeholder="Title" class="form-control">
+                            </div>
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Description</label>
+                                <input type="text" name="description" placeholder="Description" class="form-control">
+                            </div>
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Content</label>
+                                <textarea name="content" placeholder="Content ..." cols="30" rows="10"
+                                          class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3 form-inline">
+                            <label for="backgroundImage" style="margin-right: 10px">Background Image:</label>
+                            <input id="backgroundImage" type="file" name="backgroundImage">
+                        </div>
+                        <div class="form-group mt-3 form-inline">
+                            <label for="postImages" style="margin-right: 10px">Post Images: </label>
+                            <input id="postImages" type="file" name="postImages" multiple>
+                        </div>
+                        <div class="form-group my-4 text-center">
+                            <button class="btn btn-primary">Create Post</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-</header>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <form action="/posts/store" method="POST" encType="multipart/form-data" >
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Username</label>
-                        <input type="text" name="username" class="form-control" value="{{username}}">
-                    </div>
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Title</label>
-                        <input type="text" name="title" placeholder="Title" class="form-control">
-                    </div>
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Description</label>
-                        <input type="text" name="description" placeholder="Description" class="form-control">
-                    </div>
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Content</label>
-                        <textarea name="content" placeholder="Content ..." cols="30" rows="10"
-                                  class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="form-group mt-3 form-inline">
-                    <label for="backgroundImage" style="margin-right: 10px">Background Image:</label>
-                    <input id="backgroundImage" type="file" name="backgroundImage">
-                </div>
-                <div class="form-group mt-3 form-inline">
-                    <label for="postImages" style="margin-right: 10px">Post Images: </label>
-                    <input id="postImages" type="file" name="postImages" multiple>
-                </div>
-                <div class="form-group my-4 text-center">
-                    <button class="btn btn-primary">Create Post</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@endsection
+        <%- include('../partials/body'); %>
+    </body>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</html>

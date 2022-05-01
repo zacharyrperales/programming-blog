@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../database/models/User");
 
 const loginPage = (req, res) => {
-    return res.render("login");
+    return res.render('pages/login.ejs')
 }
 
 const login = (req, res) => {
@@ -32,7 +32,7 @@ const logout = (req, res) => {
 }
 
 const registrationPage = (req, res) => {
-    return res.render("register", {
+    return res.render("pages/register.ejs", {
         errors: req.flash("registrationErrors")
     });
 }

@@ -1,3 +1,5 @@
+const favicon = require('serve-favicon');
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,14 +13,15 @@ const postController = require('./controllers/postController');
 const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
 const app = express();
 
+// app.use(favicon(path.join(__dirname, '/views/resources/favicon/favicon.ico')));
+// app.use('/auth', express.static(path.join(__dirname, "/views/resources/favicon")));
+app.use(express.static(path.join(__dirname, "/views/resources/favicon")));
+
 app.set('view engine', 'ejs');
-app.use(fileUpload);
-app.use();
 app.use(connectFlash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set('views', __dirname + '/views');
 
 // @todo Use environment variable NODE_ENV and dotenv to change the 'development' environment server to local and the 'production' environment server to Google Cloud Atlassian MongoDB.
 // @todo Learn how to backup, drop, and then restore the MongoDB database and its contents to Google Cloud Atlassian MongoDB and/or platform and implement this with proper naming conventions and syntax.
@@ -45,11 +48,6 @@ app.use('*', (req, res, next) => {
 const storePost = require('./middleware/storePost');
 const auth = require('./middleware/auth');
 const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated');
-
-app.use('/', express.static(__dirname + '/views/resources'));
-app.use('/posts', express.static(__dirname + '/views/resources'));
-app.use('/post', express.static(__dirname + '/views/resources'));
-app.use('/auth', express.static(__dirname + '/views/resources'));
 
 app.get('/', indexController.getHomePage);
 app.get('/post/:id', postController.getPost);

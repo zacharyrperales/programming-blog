@@ -14,7 +14,7 @@ const getNewPost = (req, res) => {
 
 const getPost = async (req, res) => {
     const post = await Post.findById(req.params.id);
-    res.render("post", {
+    res.render("pages/post", {
         post
     });
 }
