@@ -1,5 +1,5 @@
 # Programming Blog
-Custom MERN/MEAN web application with custom Bootstrap 5 from the ground up.
+MERN/MEAN web application with custom Bootstrap 5 from the ground up.
 
 # Google Cloud Platform
 ## Google Cloud App Engine
