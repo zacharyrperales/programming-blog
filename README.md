@@ -4,7 +4,7 @@ MERN/MEAN web application with custom Bootstrap 5 from the ground up. This is a 
 # Google Cloud Platform
 ## Google Cloud App Engine
 ### Multi-Versioning of Application 
-#### Archived, Live-Testing (A/B), Production | Coming Soon
+#### Archived v1.0.0 | archive.zacharyperaleswebapplication.com  | Live-Testing v0.0.1 | zacharyperaleswebapplication.com 
 ## Google Cloud Build
 ### Google Cloud Build Triggers
 ## MongoDB Atlas on Google Cloud
