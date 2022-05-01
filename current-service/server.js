@@ -1,6 +1,6 @@
-const expressEdge = require('express-edge');
+const favicon = require('serve-favicon');
+const path = require('path');
 const express = require('express');
-const edge = require('edge.js');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require("express-fileupload");
@@ -12,13 +12,16 @@ const authenticationController = require('./controllers/authenticationController
 const postController = require('./controllers/postController');
 const { MONGO_DB_PASSWORD, PORT } = require('./config/build/config.js');
 const app = express();
-app.use(fileUpload());
-app.use(expressEdge.engine);
+
+// app.use(favicon(path.join(__dirname, '/views/resources/favicon/favicon.ico')));
+// app.use('/auth', express.static(path.join(__dirname, "/views/resources/favicon")));
+app.use(express.static(path.join(__dirname, "/views/resources/favicon")));
+
+app.set('view engine', 'ejs');
 app.use(connectFlash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set('views', __dirname + '/views');
 
 // @todo Use environment variable NODE_ENV and dotenv to change the 'development' environment server to local and the 'production' environment server to Google Cloud Atlassian MongoDB.
 // @todo Learn how to backup, drop, and then restore the MongoDB database and its contents to Google Cloud Atlassian MongoDB and/or platform and implement this with proper naming conventions and syntax.
@@ -46,11 +49,6 @@ const storePost = require('./middleware/storePost');
 const auth = require('./middleware/auth');
 const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated');
 
-app.use('/', express.static(__dirname + '/views/resources'));
-app.use('/posts', express.static(__dirname + '/views/resources'));
-app.use('/post', express.static(__dirname + '/views/resources'));
-app.use('/auth', express.static(__dirname + '/views/resources'));
-
 app.get('/', indexController.getHomePage);
 app.get('/post/:id', postController.getPost);
 app.get('/posts/new', auth, postController.getNewPost);
@@ -61,7 +59,7 @@ app.get('/auth/register', redirectIfAuthenticated, authenticationController.regi
 app.post('/users/register', redirectIfAuthenticated, authenticationController.register);
 app.get('/auth/logout', authenticationController.logout);
 
-// @todo Require https always by modifying archived-service.yaml or cloudbuild.yaml, then enforce secure cookies are always sent via https as well during sessions.
+// @todo Require https always by modifying current-service.yaml or cloudbuild.yaml, then enforce secure cookies are always sent via https as well during sessions.
 // Start the server.
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
