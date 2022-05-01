@@ -2,6 +2,6 @@ dispatch:
   - url: "zacharyperaleswebapplication.com/*"
     service: default
   - url: "app.zacharyperaleswebapplication.com/*"
-   service: default
+    service: default
   - url: "archive.zacharyperaleswebapplication.com/*"
     service: archived-service
