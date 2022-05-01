@@ -61,7 +61,7 @@ app.get('/auth/register', redirectIfAuthenticated, authenticationController.regi
 app.post('/users/register', redirectIfAuthenticated, authenticationController.register);
 app.get('/auth/logout', authenticationController.logout);
 
-// @todo Require https always by modifying app.yaml or cloudbuild.yaml, then enforce secure cookies are always sent via https as well during sessions.
+// @todo Require https always by modifying archived-service.yaml or cloudbuild.yaml, then enforce secure cookies are always sent via https as well during sessions.
 // Start the server.
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
