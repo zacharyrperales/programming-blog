@@ -21,3 +21,5 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy", "--appyaml=./config/build/google/app_engine/current-service.yaml"]
     dir: 'current-service'
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: [ "app", "deploy", "dispatch.yaml" ]
