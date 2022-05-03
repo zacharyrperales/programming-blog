@@ -8,7 +8,7 @@ MERN/MEAN web application with custom Bootstrap 5 from the ground up. This is a 
 #### Live-Testing v0.0.1 | www.theunemployednewgrad.com 
 ## Google Cloud Build
 ### Google Cloud Build Triggers
-## MongoDB Atlas on Google Cloud
+## MongoDB Atlas
 ## Express
 ### Express-Session
 ## EJS -- Embedded JavaScript Templates
