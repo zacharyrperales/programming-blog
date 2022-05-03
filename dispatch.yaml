@@ -1,5 +1,5 @@
 dispatch:
   - url: "unemployednewgrad.com/*"
     service: default
-  - url: "archive.unemployednewgrad.com/*"
+  - url: "archived.unemployednewgrad.com/*"
     service: archived-service
