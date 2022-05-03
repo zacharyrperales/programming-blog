@@ -1,7 +1,5 @@
 dispatch:
-  - url: "zacharyperaleswebapplication.com/*"
+  - url: "unemployednewgrad.com/*"
     service: default
-  - url: "app.zacharyperaleswebapplication.com/*"
-    service: default
-  - url: "archive.zacharyperaleswebapplication.com/*"
+  - url: "archive.unemployednewgrad.com/*"
     service: archived-service

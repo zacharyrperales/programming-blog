@@ -49,6 +49,14 @@ const storePost = require('./middleware/storePost');
 const auth = require('./middleware/auth');
 const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated');
 
+app.get('/how_i_built_this', (req, res) => {
+   res.render('pages/how_i_built_this.ejs');
+});
+
+app.get('/step_by_step_coding', (req, res) => {
+    res.render('pages/step_by_step_coding.ejs');
+});
+
 app.get('/', indexController.getHomePage);
 app.get('/post/:id', postController.getPost);
 app.get('/posts/new', auth, postController.getNewPost);
