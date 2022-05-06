@@ -4,8 +4,8 @@ MERN/MEAN web application with custom Bootstrap 5 from the ground up. This is a 
 # Google Cloud Platform
 ## Google Cloud App Engine
 ### Multi-Versioning of Application 
-#### Archived v1.0.0 | archive.theunemployednewgrad.com
-#### Live-Testing v0.0.1 | www.theunemployednewgrad.com 
+#### Archived v1.0.0 | https://archive.niicode.com
+#### Live-Testing v0.0.1 | https://www.niicode.com 
 ## Google Cloud Build
 ### Google Cloud Build Triggers
 ## MongoDB Atlas
