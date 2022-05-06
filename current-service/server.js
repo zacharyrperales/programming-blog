@@ -16,6 +16,7 @@ const app = express();
 // app.use(favicon(path.join(__dirname, '/views/resources/favicon/favicon.ico')));
 // app.use('/auth', express.static(path.join(__dirname, "/views/resources/favicon")));
 app.use(express.static(path.join(__dirname, "/views/resources/favicon")));
+app.use(express.static(path.join(__dirname, "/views/resources/scss")));
 
 app.set('view engine', 'ejs');
 app.use(connectFlash());
