@@ -15,3 +15,4 @@ MERN/MEAN web application with custom Bootstrap 5 from the ground up. This is a 
 ## EJS -- Embedded JavaScript Templates
 ## Bootstrap 5
 ## Google AdSense
+Prior to being accepted to AdSense there needs to be a fair amount of original content, a privacy policy, an about us section, and a polished homepage.
