@@ -8,9 +8,11 @@ MERN/MEAN web application with custom Bootstrap 5 from the ground up. This is a 
 #### Live-Testing v0.0.1 | https://www.niicode.com 
 ## Google Cloud Build
 ### Google Cloud Build Triggers
+# Node.js
 ## MongoDB Atlas
 ## Express
 ### Express-Session
 ## EJS -- Embedded JavaScript Templates
 ## Bootstrap 5
 ## Google AdSense
+Prior to being accepted to AdSense there needs to be a fair amount of original content, a privacy policy, an about us section, and a polished homepage.
